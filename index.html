@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fanpage von Jan Anton Kikak</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#1e1e2f,#3a3a6a);
+    color:white;
+    margin:0;
+    text-align:center;
+}
+
+header{
+    background:#111;
+    padding:30px;
+}
+
+h1{
+    margin:0;
+    font-size:40px;
+}
+
+.container{
+    padding:40px;
+}
+
+.profile{
+    width:200px;
+    border-radius:20px;
+    box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+
+.card{
+    background:rgba(255,255,255,0.1);
+    padding:25px;
+    margin:20px auto;
+    width:300px;
+    border-radius:15px;
+}
+
+.banana{
+    font-size:40px;
+}
+
+footer{
+    margin-top:40px;
+    padding:20px;
+    background:#111;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🍌 Fanpage 🍌</h1>
+<h2>Jan Anton Kikak</h2>
+</header>
+
+<div class="container">
+
+<img src="deinbild.png" class="profile">
+
+<div class="card">
+<h3>Infos</h3>
+<p><b>Name:</b> Jan Anton Kikak</p>
+<p><b>Wohnort:</b> Wangen zum schienerberg 25 </p>
+<p><b>Schule:</b> GTRS Realschule</p>
+<p><b>Bank Pin:</b>9551</p>
+</div>
+
+<div class="card">
+<h3>Talent</h3>
+<p class="banana">🍌🍌🍌</p>
+<p>Weltmeister im schwanzlutschen!</p>
+</div>
+
+<div class="card">
+<h3>Über ihn</h3>
+<p>
+Jan ist bekannt für seine unglaubliche Fähigkeit,
+Schwänze extrem schnell zum samenerguss zu bringen. Seine Freunde
+finden ihn legendär und feiern ihn als
+Schwanzlutsch-Weltmeister.
+</p>
+</div>
+
+</div>
+
+<footer>
+<p>© 2026 Fanpage</p>
+</footer>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oberjinen Fallen</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #111;
+    height: 100vh;
+    position: relative;
+  }
+
+  /* Knöpfe oben links und rechts, größer und unbeschriftet */
+  .controlButton {
+    position: fixed;
+    top: 10px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+  }
+
+  #fallButton { right: 10px; background-color: #007bff; }
+  #soundButton { left: 10px; background-color: #ffc107; }
+
+  /* Oberjinen-Bilder */
+  .fallingOberjinen {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: -60px;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<button id="soundButton" class="controlButton"></button>
+<button id="fallButton" class="controlButton"></button>
+
+<!-- Audio-Datei für Soundboard -->
+<audio id="myAudio">
+  <source src="stönsaund.mp3" type="audio/mpeg">
+  Dein Browser unterstützt kein Audio.
+</audio>
+
+<script>
+const fallButton = document.getElementById('fallButton');
+const soundButton = document.getElementById('soundButton');
+const myAudio = document.getElementById('myAudio');
+
+// Soundboard-Button
+soundButton.addEventListener('click', () => {
+  myAudio.currentTime = 0;
+  myAudio.play();
+});
+
+// Funktion zum Erzeugen einer fallenden Oberjinen
+function createFallingOberjinen() {
+  const img = document.createElement('img');
+  img.src = 'oberjinen.png'; // <-- Hier deine Oberjinen-Bilddatei einsetzen
+  img.classList.add('fallingOberjinen');
+  img.style.left = Math.random() * (window.innerWidth - 60) + 'px';
+  document.body.appendChild(img);
+
+  let position = -60;
+  const speed = 2 + Math.random() * 3; // zufällige Fallgeschwindigkeit
+
+  const interval = setInterval(() => {
+    position += speed;
+    img.style.top = position + 'px';
+    if(position > window.innerHeight) {
+      clearInterval(interval);
+      img.remove();
+    }
+  }, 10);
+}
+
+// Fall-Button klick: mehrere Oberjinen erzeugen
+fallButton.addEventListener('click', () => {
+  const count = 10; // Anzahl pro Klick
+  for(let i=0; i<count; i++) {
+    setTimeout(createFallingOberjinen, i * 100);
+  }
+});
+</script>
+
+</body>
+</html>
